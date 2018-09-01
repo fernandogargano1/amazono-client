@@ -39,8 +39,8 @@
                     </div>
                 </li>
                 <li class="nav-item ml-0 ml-md-2">
-                    <a click="collapse()" routerLink="/cart" routerLinkActive="active" class="nav-link">
-                        <i class="fa fa-shopping cart mr-1"></i>
+                    <a *ngIf="token" click="collapse()" routerLink="/cart" routerLinkActive="active" class="nav-link">
+                        <i class="fa fa-shopping-cart mr-1"></i>
                     </a>>
                 </li>
             </ul>

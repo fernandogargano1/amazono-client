@@ -1,13 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { DataService } from './data.service';
+
+import { UserLoggedInService } from './user-logged-in.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   searchTerm = '';
   isCollapsed = true;
+
+  token; 
+
+  constructor (private router: Router, private data: DataService, private userLoggedIn: UserLoggedInService) {}
+
+  ngOnInit() {
+      this.userLoggedIn.userLoggedIn.subscribe(() => this.token = this.getToken());
+  }
   
   getToken() {
     return localStorage.getItem('token');
@@ -21,7 +34,11 @@ export class AppComponent {
     dropdown.close();
   }
 
-  logout() {}
+  logout() {
+    localStorage.clear();
+    this.token = '';
+    this.router.navigate(['']);
+  }
 
   search() {}
 }

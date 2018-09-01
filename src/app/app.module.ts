@@ -8,18 +8,27 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { HomeComponent } from './home/home.component';
 
 import { RestApiService } from './rest-api.service';
 import { DataService } from './data.service';
+import { AuthGuardService } from './auth-guard.service';
+
+import { UserLoggedInService } from './user-logged-in.service';
+
 import { MessageComponent } from './message/message.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    MessageComponent
+    MessageComponent,
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +38,7 @@ import { MessageComponent } from './message/message.component';
     HttpClientModule,
 
   ],
-  providers: [RestApiService, DataService],
+  providers: [RestApiService, DataService, AuthGuardService, UserLoggedInService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
