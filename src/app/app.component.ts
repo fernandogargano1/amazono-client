@@ -14,11 +14,18 @@ export class AppComponent implements OnInit {
   searchTerm = '';
   isCollapsed = true;
 
-  token; 
+  token;
 
-  constructor (private router: Router, private data: DataService, private userLoggedIn: UserLoggedInService) {}
+  constructor (
+      private router: Router, 
+      private data: DataService, 
+      private userLoggedIn: UserLoggedInService,
+  ) {
+      this.data.getProfile();
+  }
 
-  ngOnInit() {
+  ngOnInit() { 
+      this.token = localStorage.getItem("token");     
       this.userLoggedIn.userLoggedIn.subscribe(() => this.token = this.getToken());
   }
   
@@ -35,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    this.data.user = {};
     localStorage.clear();
     this.token = '';
     this.router.navigate(['']);
