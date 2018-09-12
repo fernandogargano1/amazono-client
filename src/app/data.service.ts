@@ -39,8 +39,7 @@ export class DataService {
             if (localStorage.getItem('token')) {
                 const data = await this.rest.get(
                     'http://localhost:3030/api/accounts/profile'
-                )
-                console.log(data['user']);
+                )                
                 this.user = data['user'];
             }
 

@@ -9,11 +9,16 @@ import { SettingsComponent } from './settings/settings.component';
 
 import { AuthGuardService } from './auth-guard.service';
 import { AddressComponent } from './address/address.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   { 
     path: '', 
     component: HomeComponent
+  },
+  { 
+    path: 'categories', 
+    component: CategoriesComponent
   },
   { 
     path: 'register', 
