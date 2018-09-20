@@ -11,13 +11,15 @@ import { DataService } from '../data.service';
 export class CategoriesComponent implements OnInit {
   categories: any;
 
+  newCategory = '';
+  btnDisabled = false;
+
   constructor(
       private data: DataService,
       private rest: RestApiService
   ) { }
 
-  async ngOnInit() {
-      console.log('in category component');
+  async ngOnInit() {      
       try {
           const data = await this.rest.get(
               'http://localhost:3030/api/categories'
@@ -30,6 +32,25 @@ export class CategoriesComponent implements OnInit {
           this.data.error(error['message']);
       }
   }
+
+  async addCategory() {
+      this.btnDisabled = true;
+
+      try {
+            const data = await this.rest.post(
+                'http://localhost:3030/api/categories',
+                { name: this.newCategory } 
+            ); 
+
+            data['success']
+                ? (this.data.success(data['message']))
+                : this.data.error(data['message']); 
+      } catch (error) {
+            this.data.error(error['message']);
+      }
+
+      this.btnDisabled = false;
+  }
   // ngOnInit() {
   //     this.rest.get(
   //         'http://localhost:3030/api/categories'
@@ -38,6 +59,6 @@ export class CategoriesComponent implements OnInit {
   //         ? (this.categories = data['categories'])
   //         : this.data.error(data['message']);
   //     }).catch(error=> this.data.error(error['message']));
-  }
+  //}
 
 }
