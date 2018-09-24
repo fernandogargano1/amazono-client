@@ -12,6 +12,7 @@ import { AddressComponent } from './address/address.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { PostProductComponent } from './post-product/post-product.component';
 import { MyProductsComponent } from './my-products/my-products.component';
+import { CategoryComponent } from './category/category.component'
 
 const routes: Routes = [
   { 
@@ -21,6 +22,10 @@ const routes: Routes = [
   { 
     path: 'categories', 
     component: CategoriesComponent
+  },
+  { 
+    path: 'categories/:id', 
+    component: CategoryComponent
   },
   { 
     path: 'register', 
